@@ -597,7 +597,9 @@ let b:current_syntax = "outliner"
 let vo_dir = expand("<sfile>:p:h:h")
 
 " Load rc file, only the first found.
-let rcs = split(globpath('$HOME,$HOME/.vimoutliner','.vimoutlinerrc'), "\n") +
+" 将其改为优先从rtp里获取，这样便于单独维护rc文件
+let rcs = split(globpath(&rtp,'.vimoutlinerrc'), "\n") +
+    \ split(globpath('$HOME,$HOME/.vimoutliner','.vimoutlinerrc'), "\n") +
     \ split(globpath('$HOME,$HOME/.vimoutliner,$HOME/.vim', 'vimoutlinerrc'), "\n") +
     \ split(globpath(vo_dir, 'vimoutlinerrc'), "\n")
 
